@@ -50,7 +50,7 @@ app.controller('ExpensesController', function($scope) {
             $scope.newExpense = { description: '', amount: 0 };
         }
     };
-});
+}); 
 
 // Income Controller
 app.controller('IncomeController', function($scope) {
