@@ -2,25 +2,24 @@ import java.sql.*;
 
 public class StudentDBQuery {
     public static void main(String[] args) {
-        // PostgreSQL Database connection details
-        String url = "jdbc:postgresql://localhost:5432/studentdb"; // Ensure this matches your database name
-        String user = "postgres";  // Change to your PostgreSQL username
-        String password = "sai"; // Change to your PostgreSQL password
+        String url = "jdbc:postgresql://localhost:5432/studentdb"; 
+        String user = "postgres";  
+        String password = "sai"; 
 
         try {
-            // Load PostgreSQL JDBC Driver
+            
             Class.forName("org.postgresql.Driver");
 
-            // Establish connection
+            
             Connection conn = DriverManager.getConnection(url, user, password);
             System.out.println("✅ Connected to PostgreSQL successfully!");
 
-            // Query to fetch all students
+            
             String query = "SELECT * FROM Students";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            // Display student records
+            
             System.out.println("\n🎓 Student Records:");
             while (rs.next()) {
                 int id = rs.getInt("ID");
@@ -31,7 +30,7 @@ public class StudentDBQuery {
                 System.out.println("ID: " + id + ", Name: " + name + ", Age: " + age + ", Major: " + major);
             }
 
-            // Get metadata about the table
+            
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
 
@@ -40,7 +39,6 @@ public class StudentDBQuery {
                 System.out.println("Column " + i + ": " + metaData.getColumnName(i) + " (" + metaData.getColumnTypeName(i) + ")");
             }
 
-            // Close resources
             rs.close();
             stmt.close();
             conn.close();
